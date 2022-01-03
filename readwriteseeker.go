@@ -21,6 +21,10 @@ func New() *ReadWriteSeeker {
 }
 
 func (rs *ReadWriteSeeker) Write(p []byte) (n int, err error) {
+	if rs.ws == nil {
+		return 0, nil
+	}
+
 	rs.Lock()
 	defer rs.Unlock()
 	n, err = rs.ws.Write(p)
@@ -28,6 +32,10 @@ func (rs *ReadWriteSeeker) Write(p []byte) (n int, err error) {
 }
 
 func (rs *ReadWriteSeeker) Seek(offset int64, whence int) (n int64, err error) {
+	if rs.ws == nil {
+		return 0, nil
+	}
+
 	rs.Lock()
 	defer rs.Unlock()
 	n, err = rs.ws.Seek(offset, whence)
@@ -35,6 +43,10 @@ func (rs *ReadWriteSeeker) Seek(offset int64, whence int) (n int64, err error) {
 }
 
 func (rs *ReadWriteSeeker) Read(p []byte) (n int, err error) {
+	if rs.ws == nil {
+		return 0, nil
+	}
+
 	rs.Lock()
 	defer rs.Unlock()
 	n, err = rs.ws.Reader().Read(p)
