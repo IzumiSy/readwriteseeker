@@ -1,9 +1,13 @@
 package readwriteseeker
 
 import (
-	"github.com/orcaman/writerseeker"
+	"io"
 	"sync"
+
+	"github.com/orcaman/writerseeker"
 )
+
+var _ io.ReadWriteSeeker = &ReadWriteSeeker{}
 
 type ReadWriteSeeker struct {
 	sync.Mutex
