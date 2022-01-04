@@ -1,4 +1,4 @@
-module readwriteseeker
+module github.com/IzumiSy/readwriteseeker
 
 go 1.17
 
